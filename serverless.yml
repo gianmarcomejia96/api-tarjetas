@@ -2,7 +2,7 @@ org: gmsac
 service: api-tarjetas
 
 provider:
-  name: aww
+  name: aws
   runtime: python3.13
   memorySize: 1024
   timeout: 20
