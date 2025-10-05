@@ -1,0 +1,128 @@
+org: gmsac
+service: api-tarjetas
+
+provider:
+  name: aww
+  runtime: python3.13
+  memorySize: 1024
+  timeout: 20
+  iam:
+    role: arn:aws:iam::248457654186:role/LabRole
+
+functions:
+  # =======================
+  # 🧍 MÓDULO CLIENTES
+  # =======================
+  listarClientes:
+    handler: clientes/ListarCliente.lambda_handler
+    events:
+      - http:
+          path: /clientes/listar
+          method: get
+          cors: true
+          integration: lambda
+
+  crearCliente:
+    handler: clientes/CrearCliente.lambda_handler
+    events:
+      - http:
+          path: /clientes/crear
+          method: post
+          cors: true
+          integration: lambda
+
+  modificarCliente:
+    handler: clientes/ModificarCliente.lambda_handler
+    events:
+      - http:
+          path: /clientes/modificar/{id}
+          method: put
+          cors: true
+          integration: lambda
+
+  eliminarCliente:
+    handler: clientes/EliminarCliente.lambda_handler
+    events:
+      - http:
+          path: /clientes/eliminar/{id}
+          method: delete
+          cors: true
+          integration: lambda
+
+  # =======================
+  # 💳 MÓDULO TARJETAS
+  # =======================
+  listarTarjetas:
+    handler: tarjetas/ListarTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/listar
+          method: get
+          cors: true
+          integration: lambda
+
+  crearTarjeta:
+    handler: tarjetas/CrearTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/crear
+          method: post
+          cors: true
+          integration: lambda
+
+  modificarTarjeta:
+    handler: tarjetas/ModificarTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/modificar/{id}
+          method: put
+          cors: true
+          integration: lambda
+
+  eliminarTarjeta:
+    handler: tarjetas/EliminarTarjeta.lambda_handler
+    events:
+      - http:
+          path: /tarjetas/eliminar/{id}
+          method: delete
+          cors: true
+          integration: lambda
+
+  # =======================
+  # 💸 MÓDULO OPERACIONES
+  # =======================
+  listarOperaciones:
+    handler: operaciones/ListarOperacion.lambda_handler
+    events:
+      - http:
+          path: /operaciones/listar
+          method: get
+          cors: true
+          integration: lambda
+
+  crearOperacion:
+    handler: operaciones/CrearOperacion.lambda_handler
+    events:
+      - http:
+          path: /operaciones/crear
+          method: post
+          cors: true
+          integration: lambda
+
+  modificarOperacion:
+    handler: operaciones/ModificarOperacion.lambda_handler
+    events:
+      - http:
+          path: /operaciones/modificar/{id}
+          method: put
+          cors: true
+          integration: lambda
+
+  eliminarOperacion:
+    handler: operaciones/EliminarOperacion.lambda_handler
+    events:
+      - http:
+          path: /operaciones/eliminar/{id}
+          method: delete
+          cors: true
+          integration: lambda
